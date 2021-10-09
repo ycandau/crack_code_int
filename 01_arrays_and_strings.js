@@ -9,3 +9,12 @@ const allUnique = (str) => {
   }
   return true;
 };
+
+const allUniqueNoSet = (str) => {
+  const array = [];
+  for (let i = 0; i < str.length; i++) {
+    if (array[str.charCodeAt(i)]) return false;
+    array[str.charCodeAt(i)] = true;
+  }
+  return true;
+};
