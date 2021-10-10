@@ -17,6 +17,18 @@ func AllUnique(str string) bool {
 	return true
 }
 
+func AllUniqueWithoutMap(str string) bool {
+	counts := make([]bool, 256)
+	for _, ch := range str {
+		index := int(ch)
+		if has := counts[index]; has {
+			return false
+		}
+		counts[ch] = true
+	}
+	return true
+}
+
 //------------------------------------------------------------------------------
 
 func main() {
