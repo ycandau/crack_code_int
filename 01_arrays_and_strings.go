@@ -1,10 +1,7 @@
 package main
 
-import (
-	"fmt"
-)
-
 //------------------------------------------------------------------------------
+// Problem 1.1
 
 func AllUnique(str string) bool {
 	counts := map[rune]bool{}
@@ -30,8 +27,24 @@ func AllUniqueWithoutMap(str string) bool {
 }
 
 //------------------------------------------------------------------------------
+// Problem 1.2
 
-func main() {
-	fmt.Println(AllUnique("abc"))
-	fmt.Println(AllUnique("abca"))
+func ArePermutations(str1, str2 string) bool {
+	if len(str1) != len(str2) {
+		return false
+	}
+	counts := map[rune]int{}
+	for _, ch := range str1 {
+		counts[ch]++
+	}
+	for _, ch := range str2 {
+		val, found := counts[ch]
+		if !found || val == 0 {
+			return false
+		}
+		counts[ch]--
+	}
+	return true
 }
+
+//------------------------------------------------------------------------------
