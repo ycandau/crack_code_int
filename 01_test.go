@@ -90,3 +90,29 @@ func TestToURL(t *testing.T) {
 		}
 	}
 }
+
+//------------------------------------------------------------------------------
+// Problem 1.4
+
+type addTest4 struct {
+	str string
+	exp bool
+}
+
+var testsIsPalindromePermutation = []addTest4{
+	{"aa", true},
+	{"aaa", true},
+	{"aabb", true},
+	{"aabbc", true},
+	{"aabbcd", false},
+}
+
+func TestIsPalindromePermutation(t *testing.T) {
+	for _, test := range testsAllUnique {
+		if output := AllUnique(test.str); output != test.exp {
+			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
