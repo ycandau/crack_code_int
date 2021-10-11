@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //------------------------------------------------------------------------------
 // Problem 1.1
 
@@ -64,6 +66,7 @@ func ToURL(str string) string {
 	count := countChar(str, ' ')
 	output := make([]byte, len(str)+2*count)
 
+	// Work backwards which could allow in place copying
 	i := len(str) - 1
 	j := len(output) - 1
 
@@ -80,4 +83,41 @@ func ToURL(str string) string {
 		}
 	}
 	return string(output)
+}
+
+//------------------------------------------------------------------------------
+// Problem 1.4
+
+func IsPalindromePermutation(str string) bool {
+	// Count the letter occurences
+	counts := map[rune]int{}
+	for _, ch := range str {
+		counts[ch]++
+	}
+
+	// Odd length strings can have one odd count
+	// Even length strings can have 0 odd counts
+	// Equivalent to: 0 or 1 odd counts
+	
+	// Check the counts
+	oddCount := 0
+	for _, count := range counts {
+		if (count & 1 == 1) {
+			oddCount++
+		}
+		if oddCount > 1 {
+			return false
+		}
+	}
+
+	return true
+}
+
+//------------------------------------------------------------------------------
+
+func main() {
+	fmt.Println("|", IsPalindromePermutation("aab"), "|")
+	fmt.Println("|", IsPalindromePermutation("aabb"), "|")
+	fmt.Println("|", IsPalindromePermutation("aabbc"), "|")
+	fmt.Println("|", IsPalindromePermutation("aabbcd"), "|")
 }
