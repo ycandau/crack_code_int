@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //------------------------------------------------------------------------------
 // Problem 1.1
 
@@ -98,11 +96,11 @@ func IsPalindromePermutation(str string) bool {
 	// Odd length strings can have one odd count
 	// Even length strings can have 0 odd counts
 	// Equivalent to: 0 or 1 odd counts
-	
+
 	// Check the counts
 	oddCount := 0
 	for _, count := range counts {
-		if (count & 1 == 1) {
+		if count&1 == 1 {
 			oddCount++
 		}
 		if oddCount > 1 {
@@ -129,7 +127,7 @@ func IsPalindromePermutation_BV(str string) bool {
 	}
 
 	// Should have 0 or 1 bit set to 1
-	return bitVect == 0 || bitVect & (bitVect - 1) == 0
+	return bitVect == 0 || bitVect&(bitVect-1) == 0
 }
 
 //------------------------------------------------------------------------------
@@ -182,12 +180,5 @@ func OneAway(str1, str2 string) bool {
 //------------------------------------------------------------------------------
 
 func main() {
-	fmt.Println("|", OneAway("alpha", "alpha"), "|")
-	fmt.Println("|", OneAway("alpha", "al_ha"), "|")
-	fmt.Println("|", OneAway("alpha", "al__a"), "|")
 
-	fmt.Println("|", OneAway("alpha", "alph_a"), "|")
-	fmt.Println("|", OneAway("alpha", "al_ph_a"), "|")
-	fmt.Println("|", OneAway("a_lpha", "alpha"), "|")
-	fmt.Println("|", OneAway("a_lp_ha", "alpha"), "|")
 }

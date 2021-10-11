@@ -71,7 +71,7 @@ func TestArePermutations(t *testing.T) {
 
 type addTest3 struct {
 	str string
-	exp  string
+	exp string
 }
 
 var testsToURL = []addTest3{
@@ -121,6 +121,36 @@ func TestIsPalindromePermutation_BV(t *testing.T) {
 	for _, test := range testsIsPalindromePermutation {
 		if output := IsPalindromePermutation_BV(test.str); output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+// Problem 1.5
+
+type addTest5 struct {
+	str1 string
+	str2 string
+	exp  bool
+}
+
+var testsOneAway = []addTest5{
+	{"alpha", "alpha", true},
+	{"alpha", "al_ha", true},
+	{"alpha", "al__a", false},
+	{"alpha", "alph_a", true},
+	{"alpha", "al_ph_a", false},
+	{"a_lpha", "alpha", true},
+	{"a_lp_ha", "alpha", false},
+}
+
+func TestOneAway(t *testing.T) {
+	for _, test := range testsOneAway {
+		if output := OneAway(test.str1, test.str2); output != test.exp {
+			t.Errorf("( %v , %v ) => %v | %v",
+				test.str1, test.str2, output, test.exp)
 		} else {
 			t.Log("Pass")
 		}
