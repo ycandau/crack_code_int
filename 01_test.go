@@ -65,3 +65,28 @@ func TestArePermutations(t *testing.T) {
 		}
 	}
 }
+
+//------------------------------------------------------------------------------
+// Problem 1.3
+
+type addTest3 struct {
+	str string
+	exp  string
+}
+
+var testsToURL = []addTest3{
+	{"alpha", "alpha"},
+	{"alpha beta", "alpha%20beta"},
+	{"alpha beta gamma", "alpha%20beta%20gamma"},
+}
+
+func TestToURL(t *testing.T) {
+	for _, test := range testsToURL {
+		if output := ToURL(test.str); output != test.exp {
+			t.Errorf("( %v ) => %v | %v",
+				test.str, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
