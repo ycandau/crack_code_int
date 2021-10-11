@@ -133,10 +133,61 @@ func IsPalindromePermutation_BV(str string) bool {
 }
 
 //------------------------------------------------------------------------------
+// Problem 1.5
+
+func oneReplace(str1, str2 string) bool {
+	count := 0
+	for i := range str1 {
+		if str1[i] != str2[i] {
+			count++
+		}
+		if count > 1 {
+			return false
+		}
+	}
+	return true
+}
+
+func oneEdit(short, long string) bool {
+	i := 0
+	j := 0
+	for i < len(short) {
+		if short[i] == long[j] {
+			i++
+			j++
+		} else {
+			if j != i {
+				return false
+			}
+			j++
+		}
+	}
+	return true
+}
+
+func OneAway(str1, str2 string) bool {
+	diff := len(str1) - len(str2)
+	switch diff {
+	case 0:
+		return oneReplace(str1, str2)
+	case -1:
+		return oneEdit(str1, str2)
+	case 1:
+		return oneEdit(str2, str1)
+	default:
+		return false
+	}
+}
+
+//------------------------------------------------------------------------------
 
 func main() {
-	fmt.Println("|", IsPalindromePermutation_BV("aab"), "|")
-	fmt.Println("|", IsPalindromePermutation_BV("aabb"), "|")
-	fmt.Println("|", IsPalindromePermutation_BV("aabbc"), "|")
-	fmt.Println("|", IsPalindromePermutation_BV("aabbcd"), "|")
+	fmt.Println("|", OneAway("alpha", "alpha"), "|")
+	fmt.Println("|", OneAway("alpha", "al_ha"), "|")
+	fmt.Println("|", OneAway("alpha", "al__a"), "|")
+
+	fmt.Println("|", OneAway("alpha", "alph_a"), "|")
+	fmt.Println("|", OneAway("alpha", "al_ph_a"), "|")
+	fmt.Println("|", OneAway("a_lpha", "alpha"), "|")
+	fmt.Println("|", OneAway("a_lp_ha", "alpha"), "|")
 }
