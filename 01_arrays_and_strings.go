@@ -48,3 +48,36 @@ func ArePermutations(str1, str2 string) bool {
 }
 
 //------------------------------------------------------------------------------
+// Problem 1.3
+
+func countChar(str string, match rune) int {
+	count := 0
+	for _, ch := range str {
+		if ch == match {
+			count++
+		}
+	}
+	return count
+}
+
+func ToURL(str string) string {
+	count := countChar(str, ' ')
+	output := make([]byte, len(str)+2*count)
+
+	i := len(str) - 1
+	j := len(output) - 1
+
+	for ; i >= 0; i-- {
+		ch := str[i]
+		if ch == ' ' {
+			output[j-2] = '%'
+			output[j-1] = '2'
+			output[j] = '0'
+			j -= 3
+		} else {
+			output[j] = ch
+			j--
+		}
+	}
+	return string(output)
+}
