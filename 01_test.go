@@ -1,25 +1,29 @@
 package main
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 //------------------------------------------------------------------------------
 // Problem 1.1
 
-type addTest1 struct {
+type testType1 struct {
 	str string
 	exp bool
 }
 
-var testsAllUnique = []addTest1{
+var tests1 = []testType1{
 	{"abcde", true},
 	{"abcda", false},
 	{"ebcde", false},
 	{"abade", false},
 }
 
-func TestAllUnique(t *testing.T) {
-	for _, test := range testsAllUnique {
-		if output := AllUnique(test.str); output != test.exp {
+func Test1a(t *testing.T) {
+	for _, test := range tests1 {
+		output := AllUnique(test.str)
+		if output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
 		} else {
 			t.Log("Pass")
@@ -27,9 +31,10 @@ func TestAllUnique(t *testing.T) {
 	}
 }
 
-func TestAllUniqueWithoutMap(t *testing.T) {
-	for _, test := range testsAllUnique {
-		if output := AllUniqueWithoutMap(test.str); output != test.exp {
+func Test1b(t *testing.T) {
+	for _, test := range tests1 {
+		output := AllUniqueWithoutMap(test.str)
+		if output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
 		} else {
 			t.Log("Pass")
@@ -40,13 +45,13 @@ func TestAllUniqueWithoutMap(t *testing.T) {
 //------------------------------------------------------------------------------
 // Problem 1.2
 
-type addTest2 struct {
+type testType2 struct {
 	str1 string
 	str2 string
 	exp  bool
 }
 
-var testsArePermutations = []addTest2{
+var tests2 = []testType2{
 	{"xabc", "xabc", true},
 	{"xabc", "abcx", true},
 	{"xabc", "abc", false},
@@ -55,9 +60,10 @@ var testsArePermutations = []addTest2{
 	{"xabc", "abcy", false},
 }
 
-func TestArePermutations(t *testing.T) {
-	for _, test := range testsArePermutations {
-		if output := ArePermutations(test.str1, test.str2); output != test.exp {
+func Test2(t *testing.T) {
+	for _, test := range tests2 {
+		output := ArePermutations(test.str1, test.str2)
+		if output != test.exp {
 			t.Errorf("( %v , %v ) => %v | %v",
 				test.str1, test.str2, output, test.exp)
 		} else {
@@ -69,20 +75,21 @@ func TestArePermutations(t *testing.T) {
 //------------------------------------------------------------------------------
 // Problem 1.3
 
-type addTest3 struct {
+type testType3 struct {
 	str string
 	exp string
 }
 
-var testsToURL = []addTest3{
+var tests3 = []testType3{
 	{"alpha", "alpha"},
 	{"alpha beta", "alpha%20beta"},
 	{"alpha beta gamma", "alpha%20beta%20gamma"},
 }
 
-func TestToURL(t *testing.T) {
-	for _, test := range testsToURL {
-		if output := ToURL(test.str); output != test.exp {
+func Test3(t *testing.T) {
+	for _, test := range tests3 {
+		output := ToURL(test.str)
+		if output != test.exp {
 			t.Errorf("( %v ) => %v | %v",
 				test.str, output, test.exp)
 		} else {
@@ -94,12 +101,12 @@ func TestToURL(t *testing.T) {
 //------------------------------------------------------------------------------
 // Problem 1.4
 
-type addTest4 struct {
+type testType4 struct {
 	str string
 	exp bool
 }
 
-var testsIsPalindromePermutation = []addTest4{
+var tests4 = []testType4{
 	{"aa", true},
 	{"aaa", true},
 	{"aabb", true},
@@ -107,8 +114,8 @@ var testsIsPalindromePermutation = []addTest4{
 	{"aabbcd", false},
 }
 
-func TestIsPalindromePermutation(t *testing.T) {
-	for _, test := range testsIsPalindromePermutation {
+func Test4a(t *testing.T) {
+	for _, test := range tests4 {
 		if output := IsPalindromePermutation(test.str); output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
 		} else {
@@ -117,8 +124,8 @@ func TestIsPalindromePermutation(t *testing.T) {
 	}
 }
 
-func TestIsPalindromePermutation_BV(t *testing.T) {
-	for _, test := range testsIsPalindromePermutation {
+func Test4b(t *testing.T) {
+	for _, test := range tests4 {
 		if output := IsPalindromePermutation_BV(test.str); output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
 		} else {
@@ -130,13 +137,13 @@ func TestIsPalindromePermutation_BV(t *testing.T) {
 //------------------------------------------------------------------------------
 // Problem 1.5
 
-type addTest5 struct {
+type testType5 struct {
 	str1 string
 	str2 string
 	exp  bool
 }
 
-var testsOneAway = []addTest5{
+var tests5 = []testType5{
 	{"alpha", "alpha", true},
 	{"alpha", "al_ha", true},
 	{"alpha", "al__a", false},
@@ -146,9 +153,10 @@ var testsOneAway = []addTest5{
 	{"a_lp_ha", "alpha", false},
 }
 
-func TestOneAway(t *testing.T) {
-	for _, test := range testsOneAway {
-		if output := OneAway(test.str1, test.str2); output != test.exp {
+func Test5(t *testing.T) {
+	for _, test := range tests5 {
+		output := OneAway(test.str1, test.str2)
+		if output != test.exp {
 			t.Errorf("( %v , %v ) => %v | %v",
 				test.str1, test.str2, output, test.exp)
 		} else {
@@ -160,20 +168,20 @@ func TestOneAway(t *testing.T) {
 //------------------------------------------------------------------------------
 // Problem 1.6
 
-type addTest6 struct {
+type testType6 struct {
 	str string
 	exp string
 }
 
-var testsStringCompression = []addTest6{
+var tests6 = []testType6{
 	{"alpha", "alpha"},
 	{"aabbcc", "aabbcc"},
 	{"aabbccc", "2a2b3c"},
 	{"aaaaaaaaaa", "10a"},
 }
 
-func TestStringCompression(t *testing.T) {
-	for _, test := range testsStringCompression {
+func Test6a(t *testing.T) {
+	for _, test := range tests6 {
 		if output := StringCompression(test.str); output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
 		} else {
@@ -182,10 +190,37 @@ func TestStringCompression(t *testing.T) {
 	}
 }
 
-func TestStringCompression_SB(t *testing.T) {
-	for _, test := range testsStringCompression {
-		if output := StringCompression_SB(test.str); output != test.exp {
+func Test6b(t *testing.T) {
+	for _, test := range tests6 {
+		output := StringCompression_SB(test.str)
+		if output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+// Problem 1.7
+
+type testType7 struct {
+	inp matrix
+	exp matrix
+}
+
+var tests7 = []testType7{
+	{matrix{{1, 2}, {3, 4}}, matrix{{2, 4}, {1, 3}}},
+	{
+		matrix{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
+		matrix{{3, 6, 9}, {2, 5, 8}, {1, 4, 7}},
+	}}
+
+func Test7(t *testing.T) {
+	for _, test := range tests7 {
+		output := RotateMatrix(test.inp)
+		if !reflect.DeepEqual(output, test.exp) {
+			t.Errorf("( %v ) => %v | %v", test.inp, output, test.exp)
 		} else {
 			t.Log("Pass")
 		}
