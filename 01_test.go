@@ -156,3 +156,28 @@ func TestOneAway(t *testing.T) {
 		}
 	}
 }
+
+//------------------------------------------------------------------------------
+// Problem 1.6
+
+type addTest6 struct {
+	str string
+	exp string
+}
+
+var testsStringCompression = []addTest6{
+	{"alpha", "alpha"},
+	{"aabbcc", "aabbcc"},
+	{"aabbccc", "2a2b3c"},
+	{"aaaaaaaaaa", "10a"},
+}
+
+func TestStringCompression(t *testing.T) {
+	for _, test := range testsStringCompression {
+		if output := StringCompression(test.str); output != test.exp {
+			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
