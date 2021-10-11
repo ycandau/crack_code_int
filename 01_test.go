@@ -181,3 +181,13 @@ func TestStringCompression(t *testing.T) {
 		}
 	}
 }
+
+func TestStringCompression_SB(t *testing.T) {
+	for _, test := range testsStringCompression {
+		if output := StringCompression_SB(test.str); output != test.exp {
+			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}

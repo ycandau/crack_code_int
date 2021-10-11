@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 //------------------------------------------------------------------------------
@@ -204,6 +205,26 @@ func StringCompression(str string) string {
 	}
 
 	return output
+}
+
+func StringCompression_SB(str string) string {
+	var sb strings.Builder
+
+	for count, i := 0, 0; i < len(str); i++ {
+		ch := str[i]
+		count++
+		if i+1 == len(str) || ch != str[i + 1] {
+			sb.WriteString(strconv.Itoa(count))
+			sb.WriteByte(ch)
+			count = 0
+		}
+	}
+
+	if len(str) <= sb.Len() {
+		return str
+	}
+
+	return sb.String()
 }
 
 //------------------------------------------------------------------------------
