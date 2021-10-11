@@ -108,8 +108,8 @@ var testsIsPalindromePermutation = []addTest4{
 }
 
 func TestIsPalindromePermutation(t *testing.T) {
-	for _, test := range testsAllUnique {
-		if output := AllUnique(test.str); output != test.exp {
+	for _, test := range testsIsPalindromePermutation {
+		if output := IsPalindromePermutation(test.str); output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
 		} else {
 			t.Log("Pass")
@@ -117,25 +117,9 @@ func TestIsPalindromePermutation(t *testing.T) {
 	}
 }
 
-//------------------------------------------------------------------------------
-// Problem 1.4
-
-type addTest4b struct {
-	str string
-	exp bool
-}
-
-var testsIsPalindromePermutation_BV = []addTest4b{
-	{"aa", true},
-	{"aaa", true},
-	{"aabb", true},
-	{"aabbc", true},
-	{"aabbcd", false},
-}
-
 func TestIsPalindromePermutation_BV(t *testing.T) {
-	for _, test := range testsAllUnique {
-		if output := AllUnique(test.str); output != test.exp {
+	for _, test := range testsIsPalindromePermutation {
+		if output := IsPalindromePermutation_BV(test.str); output != test.exp {
 			t.Errorf("( %v ) => %v | %v", test.str, output, test.exp)
 		} else {
 			t.Log("Pass")
