@@ -114,10 +114,29 @@ func IsPalindromePermutation(str string) bool {
 }
 
 //------------------------------------------------------------------------------
+// Problem 1.4 with bit vector
+
+func toggle(bitVec int, ch rune) int {
+	i := ch - 'a'
+	return bitVec ^ (1 << i)
+}
+
+func IsPalindromePermutation_BV(str string) bool {
+	// We only need to know if counts are odd or not
+	bitVect := 0
+	for _, ch := range str {
+		bitVect = toggle(bitVect, ch)
+	}
+
+	// Should have 0 or 1 bit set to 1
+	return bitVect == 0 || bitVect & (bitVect - 1) == 0
+}
+
+//------------------------------------------------------------------------------
 
 func main() {
-	fmt.Println("|", IsPalindromePermutation("aab"), "|")
-	fmt.Println("|", IsPalindromePermutation("aabb"), "|")
-	fmt.Println("|", IsPalindromePermutation("aabbc"), "|")
-	fmt.Println("|", IsPalindromePermutation("aabbcd"), "|")
+	fmt.Println("|", IsPalindromePermutation_BV("aab"), "|")
+	fmt.Println("|", IsPalindromePermutation_BV("aabb"), "|")
+	fmt.Println("|", IsPalindromePermutation_BV("aabbc"), "|")
+	fmt.Println("|", IsPalindromePermutation_BV("aabbcd"), "|")
 }
