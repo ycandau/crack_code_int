@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"strconv"
+)
+
 //------------------------------------------------------------------------------
 // Problem 1.1
 
@@ -178,7 +183,31 @@ func OneAway(str1, str2 string) bool {
 }
 
 //------------------------------------------------------------------------------
+// Problem 1.6
+
+func StringCompression(str string) string {
+	output := ""
+	count := 0
+
+	for i := 0; i < len(str); i++ {
+		ch := str[i]
+		count++
+		if i+1 == len(str) || ch != str[i+1] {
+			output += strconv.Itoa(count)
+			output += string(ch)
+			count = 0
+		}
+	}
+
+	if len(str) <= len(output) {
+		return str
+	}
+
+	return output
+}
+
+//------------------------------------------------------------------------------
 
 func main() {
-
+	fmt.Println(StringCompression("aaabccccx"))
 }
