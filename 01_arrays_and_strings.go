@@ -229,6 +229,7 @@ func StringCompression_SB(str string) string {
 
 //------------------------------------------------------------------------------
 // Problem 1.7
+
 type matrix [][]int
 
 func newMatrix(dx, dy int) matrix {
@@ -255,6 +256,13 @@ func RotateMatrix(matr matrix) matrix {
 		}
 	}
 
+	return matr
+}
+
+//------------------------------------------------------------------------------
+// Problem 1.8
+
+func ZeroMatrix(matr matrix) matrix {
 	return matr
 }
 
