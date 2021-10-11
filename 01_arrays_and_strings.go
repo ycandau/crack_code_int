@@ -213,7 +213,7 @@ func StringCompression_SB(str string) string {
 	for count, i := 0, 0; i < len(str); i++ {
 		ch := str[i]
 		count++
-		if i+1 == len(str) || ch != str[i + 1] {
+		if i+1 == len(str) || ch != str[i+1] {
 			sb.WriteString(strconv.Itoa(count))
 			sb.WriteByte(ch)
 			count = 0
@@ -225,6 +225,37 @@ func StringCompression_SB(str string) string {
 	}
 
 	return sb.String()
+}
+
+//------------------------------------------------------------------------------
+// Problem 1.7
+type matrix [][]int
+
+func newMatrix(dx, dy int) matrix {
+	matr := make([][]int, dy)
+	for i := range matr {
+		matr[i] = make([]int, dx)
+	}
+	return matr
+}
+
+func RotateMatrix(matr matrix) matrix {
+	l := len(matr)
+
+	for x := 0; x < (l+1)>>1; x++ {
+		for y := 0; y < l>>1; y++ {
+			x2 := l - x - 1
+			y2 := l - y - 1
+
+			tmp := matr[y][x]
+			matr[y][x] = matr[x][y2]
+			matr[x][y2] = matr[y2][x2]
+			matr[y2][x2] = matr[x2][y]
+			matr[x2][y] = tmp
+		}
+	}
+
+	return matr
 }
 
 //------------------------------------------------------------------------------
