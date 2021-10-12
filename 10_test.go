@@ -31,3 +31,28 @@ func Test101(t *testing.T) {
 		}
 	}
 }
+
+//------------------------------------------------------------------------------
+// Problem 10.2
+
+type testType102 struct {
+	arr []string
+	exp []string
+}
+
+var tests102 = []testType102{
+	{
+		[]string{"a", "abc", "abcd", "ab", "a", "bac", "dabc", "ba"},
+		[]string{"a", "a", "ab", "ba", "abc", "bac", "abcd", "dabc"}},
+}
+
+func Test102(t *testing.T) {
+	for _, test := range tests102 {
+		output := GroupAnagrams(test.arr)
+		if !reflect.DeepEqual(output, test.exp) {
+			t.Errorf("( %v )\n=> %v\n!= %v", test.arr, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
