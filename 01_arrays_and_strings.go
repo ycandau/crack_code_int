@@ -347,8 +347,12 @@ func ZeroMatrix_IP(matr matrix) matrix {
 //------------------------------------------------------------------------------
 // Problem 1.9
 
-func StringRotation(str, sub string) bool {
-	return true
+func StringRotation(str, rot string) bool {
+	if (len(str) != len(rot)) {
+		return false
+	}
+	doubled := str + str
+	return strings.Contains(doubled, rot)
 }
 
 //------------------------------------------------------------------------------

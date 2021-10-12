@@ -284,24 +284,25 @@ func Test8b(t *testing.T) {
 
 type testType9 struct {
 	str string
-	sub string
+	rot string
 	exp bool
 }
 
 var tests9 = []testType9{
 	{"alpha", "alpha", true},
-	{"alpha__", "alpha", true},
-	{"__alpha", "alpha", true},
-	{"_alpha_", "alpha", true},
-	{"alpha", "xal", false},
-	{"alpha", "hax", false},
-	{"alpha", "phx", false},
+	{"alpha", "phaal", true},
+	{"alpha", "xlpha", false},
+	{"alpha", "alxha", false},
+	{"alpha", "alphx", false},
+	{"alpha", "", false},
+	{"", "alpha", false},
+	{"", "", true},
 }
 
 func Test9(t *testing.T) {
 	for _, test := range tests9 {
-		if output := StringRotation(test.str, test.sub); output != test.exp {
-			t.Errorf("( %v , %v ) => %v | %v", test.str, test.sub, output, test.exp)
+		if output := StringRotation(test.str, test.rot); output != test.exp {
+			t.Errorf("( %v , %v ) => %v | %v", test.str, test.rot, output, test.exp)
 		} else {
 			t.Log("Pass")
 		}
