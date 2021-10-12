@@ -345,6 +345,13 @@ func ZeroMatrix_IP(matr matrix) matrix {
 }
 
 //------------------------------------------------------------------------------
+// Problem 1.9
+
+func StringRotation(str, sub string) bool {
+	return true
+}
+
+//------------------------------------------------------------------------------
 
 func main() {
 	fmt.Println(StringCompression("aaabccccx"))

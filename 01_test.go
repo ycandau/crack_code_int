@@ -278,3 +278,32 @@ func Test8b(t *testing.T) {
 		}
 	}
 }
+
+//------------------------------------------------------------------------------
+// Problem 1.9
+
+type testType9 struct {
+	str string
+	sub string
+	exp bool
+}
+
+var tests9 = []testType9{
+	{"alpha", "alpha", true},
+	{"alpha__", "alpha", true},
+	{"__alpha", "alpha", true},
+	{"_alpha_", "alpha", true},
+	{"alpha", "xal", false},
+	{"alpha", "hax", false},
+	{"alpha", "phx", false},
+}
+
+func Test9(t *testing.T) {
+	for _, test := range tests9 {
+		if output := StringRotation(test.str, test.sub); output != test.exp {
+			t.Errorf("( %v , %v ) => %v | %v", test.str, test.sub, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
