@@ -255,12 +255,24 @@ var tests8 = []testType7{
 		matrix{{0, 0, 0}, {4, 0, 0}, {0, 0, 0}}},
 }
 
-func Test8(t *testing.T) {
+func Test8a(t *testing.T) {
 	for _, test := range tests8 {
-		input := copyMatrix(test.inp)
-		output := ZeroMatrix(test.inp)
+		output := copyMatrix(test.inp)
+		ZeroMatrix(output)
 		if !reflect.DeepEqual(output, test.exp) {
-			t.Errorf("( %v ) => %v | %v", input, output, test.exp)
+			t.Errorf("( %v ) => %v | %v", test.inp, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+func Test8b(t *testing.T) {
+	for _, test := range tests8 {
+		output := copyMatrix(test.inp)
+		ZeroMatrix_IP(output)
+		if !reflect.DeepEqual(output, test.exp) {
+			t.Errorf("( %v ) => %v | %v", test.inp, output, test.exp)
 		} else {
 			t.Log("Pass")
 		}

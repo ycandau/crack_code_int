@@ -263,6 +263,84 @@ func RotateMatrix(matr matrix) matrix {
 // Problem 1.8
 
 func ZeroMatrix(matr matrix) matrix {
+	dx, dy := len(matr[0]), len(matr)
+	cols := make([]bool, dx)
+	rows := make([]bool, dy)
+
+	for x := 0; x < dx; x++ {
+		for y := 0; y < dy; y++ {
+			if matr[y][x] == 0 {
+				cols[x] = true
+				rows[y] = true
+			}
+		}
+	}
+
+	for x := 0; x < dx; x++ {
+		for y := 0; y < dy; y++ {
+			if cols[x] || rows[y] {
+				matr[y][x] = 0
+			}
+		}
+	}
+
+	return matr
+}
+
+func ZeroMatrix_IP(matr matrix) matrix {
+
+	// Store zero presence in first row
+	rowHasZero := false
+	for _, n := range matr[0] {
+		if n == 0 {
+			rowHasZero = true
+			break
+		}
+	}
+
+	// Store zero presence in first col
+	colHasZero := false
+	for _, row := range matr {
+		if row[0] == 0 {
+			colHasZero = true
+			break
+		}
+	}
+
+	// Set zeros in first column and row
+	dx, dy := len(matr[0]), len(matr)
+	for x := 1; x < dx; x++ {
+		for y := 1; y < dy; y++ {
+			if matr[y][x] == 0 {
+				matr[0][x] = 0
+				matr[y][0] = 0
+			}
+		}
+	}
+
+	// Propagate zeros from first column and row
+	for x := 1; x < dx; x++ {
+		for y := 1; y < dy; y++ {
+			if matr[0][x] == 0 || matr[y][0] == 0 {
+				matr[y][x] = 0
+			}
+		}
+	}
+
+	// Set first row to zero if necessary
+	for x := range matr[0] {
+		if rowHasZero {
+			matr[0][x] = 0
+		}
+	}
+
+	// Set first column to zero if necessary
+	for y := range matr {
+		if colHasZero {
+			matr[y][0] = 0
+		}
+	}
+
 	return matr
 }
 
