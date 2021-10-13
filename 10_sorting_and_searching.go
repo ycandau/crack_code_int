@@ -73,8 +73,34 @@ func GroupAnagrams_Map(strings []string) []string {
 //------------------------------------------------------------------------------
 // Problem 10.3
 
-func RotatedSearch(numbers []int, val int) int {
-	return 0
+func RotatedSearch(numbers []int, val int) (int, bool) {
+	low, vlow := 0, numbers[0]
+	high, vhigh := len(numbers)-1, numbers[len(numbers)-1]
+
+	for low <= high {
+		mid := (low + high) >> 1
+		vmid := numbers[mid]
+
+		if vmid == val {
+			return mid, true
+		}
+
+		if vmid < vhigh {
+			if vmid < val && val <= vhigh {
+				low, vlow = mid+1, numbers[mid+1]
+			} else {
+				high, vhigh = mid-1, numbers[mid-1]
+			}
+		} else {
+			if vlow <= val && val < vmid {
+				high, vhigh = mid-1, numbers[mid-1]
+			} else {
+				low, vlow = mid+1, numbers[mid+1]
+			}
+		}
+	}
+
+	return 0, false
 }
 
 //------------------------------------------------------------------------------

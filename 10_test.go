@@ -79,7 +79,7 @@ var tests103 = []testType103{
 
 func Test103(t *testing.T) {
 	for _, test := range tests103 {
-		output := RotatedSearch(test.arr, test.val)
+		output, _ := RotatedSearch(test.arr, test.val)
 		if !reflect.DeepEqual(output, test.exp) {
 			t.Errorf("( %v , %v ) => %v | %v", test.arr, test.val, output, test.exp)
 		} else {
