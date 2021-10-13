@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sort"
 )
 
@@ -52,4 +53,26 @@ func GroupAnagrams(strings []string) []string {
 	})
 
 	return copies
+}
+
+func GroupAnagrams_Map(strings []string) []string {
+	anagramMap := make(map[string][]string)
+	for _, str := range strings {
+		sorted := sortString(str)
+		anagramMap[sorted] = append(anagramMap[sorted], str)
+	}
+
+	anagrams := make([]string, 0, len(strings))
+	for _, strs := range anagramMap {
+		anagrams = append(anagrams, strs...)
+	}
+
+	return anagrams
+}
+
+//------------------------------------------------------------------------------
+
+func main() {
+	strings := []string{"a", "abc", "abcd", "ab", "a", "bac", "dabc", "ba"}
+	fmt.Println(GroupAnagrams_Map(strings))
 }

@@ -40,14 +40,14 @@ type testType102 struct {
 	exp []string
 }
 
-var tests102 = []testType102{
+var tests102a = []testType102{
 	{
 		[]string{"a", "abc", "abcd", "ab", "a", "bac", "dabc", "ba"},
 		[]string{"a", "a", "ab", "ba", "abc", "bac", "abcd", "dabc"}},
 }
 
-func Test102(t *testing.T) {
-	for _, test := range tests102 {
+func Test102a(t *testing.T) {
+	for _, test := range tests102a {
 		output := GroupAnagrams(test.arr)
 		if !reflect.DeepEqual(output, test.exp) {
 			t.Errorf("( %v )\n=> %v\n!= %v", test.arr, output, test.exp)
