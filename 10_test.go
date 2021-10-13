@@ -40,17 +40,48 @@ type testType102 struct {
 	exp []string
 }
 
-var tests102a = []testType102{
+var tests102 = []testType102{
 	{
 		[]string{"a", "abc", "abcd", "ab", "a", "bac", "dabc", "ba"},
 		[]string{"a", "a", "ab", "ba", "abc", "bac", "abcd", "dabc"}},
 }
 
-func Test102a(t *testing.T) {
-	for _, test := range tests102a {
+func Test102(t *testing.T) {
+	for _, test := range tests102 {
 		output := GroupAnagrams(test.arr)
 		if !reflect.DeepEqual(output, test.exp) {
 			t.Errorf("( %v )\n=> %v\n!= %v", test.arr, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+// Problem 10.3
+
+type testType103 struct {
+	arr []int
+	val int
+	exp int
+}
+
+var tests103 = []testType103{
+	{[]int{8, 9, 10, 1, 2, 3, 4, 5, 6, 7}, 8, 0},
+	{[]int{8, 9, 10, 1, 2, 3, 4, 5, 6, 7}, 9, 1},
+	{[]int{8, 9, 10, 1, 2, 3, 4, 5, 6, 7}, 6, 8},
+	{[]int{8, 9, 10, 1, 2, 3, 4, 5, 6, 7}, 7, 9},
+	{[]int{4, 5, 6, 7, 8, 9, 10, 1, 2, 3}, 4, 0},
+	{[]int{4, 5, 6, 7, 8, 9, 10, 1, 2, 3}, 5, 1},
+	{[]int{4, 5, 6, 7, 8, 9, 10, 1, 2, 3}, 2, 8},
+	{[]int{4, 5, 6, 7, 8, 9, 10, 1, 2, 3}, 3, 9},
+}
+
+func Test103(t *testing.T) {
+	for _, test := range tests103 {
+		output := RotatedSearch(test.arr, test.val)
+		if !reflect.DeepEqual(output, test.exp) {
+			t.Errorf("( %v , %v ) => %v | %v", test.arr, test.val, output, test.exp)
 		} else {
 			t.Log("Pass")
 		}

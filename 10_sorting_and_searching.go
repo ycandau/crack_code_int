@@ -71,6 +71,13 @@ func GroupAnagrams_Map(strings []string) []string {
 }
 
 //------------------------------------------------------------------------------
+// Problem 10.3
+
+func RotatedSearch(numbers []int, val int) int {
+	return 0
+}
+
+//------------------------------------------------------------------------------
 
 func main() {
 	strings := []string{"a", "abc", "abcd", "ab", "a", "bac", "dabc", "ba"}
