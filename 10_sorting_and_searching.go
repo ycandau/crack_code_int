@@ -1,5 +1,9 @@
 package main
 
+import (
+	"sort"
+)
+
 //------------------------------------------------------------------------------
 // Problem 10.1
 
@@ -26,8 +30,26 @@ func SortedMerge(arr1, arr2 []int) []int {
 }
 
 //------------------------------------------------------------------------------
+// Problem 10.2
 
-func main() {
-	SortedMerge([]int{1, 2, 3}, []int{4, 5, 6})
+func sortString(str string) string {
+	runes := []rune(str)
+	sort.Slice(runes, func(i, j int) bool { return runes[i] < runes[j] })
+	return string(runes)
+}
 
+func GroupAnagrams(strings []string) []string {
+	copies := make([]string, len(strings))
+	copy(copies, strings)
+
+	sort.Slice(copies, func(i, j int) bool {
+		s1 := sortString(copies[i])
+		s2 := sortString(copies[j])
+		if s1 == s2 {
+			return copies[i] < copies[j]
+		}
+		return sortString(copies[i]) < sortString(copies[j])
+	})
+
+	return copies
 }
