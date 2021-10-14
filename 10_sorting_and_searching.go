@@ -154,6 +154,27 @@ func ExpSearch(numbers []int, val int) int {
 // Problem 10.5
 
 func SparseSearch(arr []string, val string) int {
+	low := 0
+	high := len(arr) - 1
+
+	for low <= high {
+		mid := (low + high) >> 1
+		next := mid
+
+		for arr[next] == "" && next < len(arr) - 1 {
+			next++
+		}
+		vnext := arr[next]
+
+		if vnext == "" || val < vnext {
+			high = mid - 1
+		} else if val > vnext {
+			low = next + 1
+		} else {
+			return next
+		}
+	}
+
 	return -1
 }
 

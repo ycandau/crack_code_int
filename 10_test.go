@@ -133,6 +133,10 @@ var tests105 = []testType105{
 	{[]string{"ab", "", "", "bc", "", "cd", "", "", "", "de"}, "bc", 3},
 	{[]string{"ab", "", "", "bc", "", "cd", "", "", "", "de"}, "cd", 5},
 	{[]string{"ab", "", "", "bc", "", "cd", "", "", "", "de"}, "de", 9},
+	{[]string{"ab", "", "", "", ""}, "ab", 0},
+	{[]string{"ab", "", "", "", ""}, "xx", -1},
+	{[]string{"", "", "", "", "ab"}, "ab", 4},
+	{[]string{"", "", "", "", "ab"}, "xx", -1},
 }
 
 func Test105(t *testing.T) {
