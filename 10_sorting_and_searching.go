@@ -151,6 +151,14 @@ func ExpSearch(numbers []int, val int) int {
 }
 
 //------------------------------------------------------------------------------
+// Problem 10.5
+
+func SparseSearch(arr []string, val string) int {
+	return -1
+}
+
+
+//------------------------------------------------------------------------------
 
 func main() {
 	// fmt.Println()

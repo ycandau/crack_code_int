@@ -110,7 +110,35 @@ var tests104 = []testType104{
 func Test104(t *testing.T) {
 	for _, test := range tests104 {
 		output := ExpSearch(test.arr, test.val)
-		if !reflect.DeepEqual(output, test.exp) {
+		if output != test.exp {
+			t.Errorf("( %v , %v ) => %v | %v", test.arr, test.val, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+// Problem 10.5
+
+type testType105 struct {
+	arr []string
+	val string
+	exp int
+}
+
+var tests105 = []testType105{
+	{[]string{"ab", "", "", "bc", "", "cd", "", "", "", "de"}, "", -1},
+	{[]string{"ab", "", "", "bc", "", "cd", "", "", "", "de"}, "ab", 0},
+	{[]string{"ab", "", "", "bc", "", "cd", "", "", "", "de"}, "bc", 3},
+	{[]string{"ab", "", "", "bc", "", "cd", "", "", "", "de"}, "cd", 5},
+	{[]string{"ab", "", "", "bc", "", "cd", "", "", "", "de"}, "de", 9},
+}
+
+func Test105(t *testing.T) {
+	for _, test := range tests105 {
+		output := SparseSearch(test.arr, test.val)
+		if output != test.exp {
 			t.Errorf("( %v , %v ) => %v | %v", test.arr, test.val, output, test.exp)
 		} else {
 			t.Log("Pass")
