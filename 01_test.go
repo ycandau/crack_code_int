@@ -205,7 +205,7 @@ func Test6b(t *testing.T) {
 // Problem 1.7
 
 func copyMatrix(matr matrix) matrix {
-	output := newMatrix(len(matr[0]), len(matr))
+	output := newMatrix([]int{}, len(matr[0]), len(matr))
 	for x := range matr[0] {
 		for y := range matr {
 			output[y][x] = matr[y][x]

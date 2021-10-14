@@ -161,7 +161,7 @@ func SparseSearch(arr []string, val string) int {
 		mid := (low + high) >> 1
 		next := mid
 
-		for arr[next] == "" && next < len(arr) - 1 {
+		for arr[next] == "" && next < len(arr)-1 {
 			next++
 		}
 		vnext := arr[next]
@@ -178,8 +178,25 @@ func SparseSearch(arr []string, val string) int {
 	return -1
 }
 
-
 //------------------------------------------------------------------------------
+// Problem 10.9
+
+func MatrixSearch(matr matrix, val int) [2]int {
+	x, y := len(matr[0])-1, 0
+
+	for x >= 0 && y < len(matr) {
+		m := matr[y][x]
+		if m > val {
+			x--
+		} else if m < val {
+			y++
+		} else {
+			return [2]int{x, y}
+		}
+	}
+
+	return [2]int{-1, -1}
+}
 
 func main() {
 	// fmt.Println()

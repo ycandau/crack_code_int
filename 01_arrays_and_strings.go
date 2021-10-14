@@ -231,11 +231,21 @@ func StringCompression_SB(str string) string {
 
 type matrix [][]int
 
-func newMatrix(dx, dy int) matrix {
+func newMatrix(values []int, dx, dy int) matrix {
 	matr := make([][]int, dy)
-	for i := range matr {
-		matr[i] = make([]int, dx)
+	for y := range matr {
+		matr[y] = make([]int, dx)
 	}
+
+	count := len(values)
+	if dx*dy < count {
+		count = dx * dy
+	}
+
+	for i := 0; i < count; i++ {
+		matr[i/dx][i%dx] = values[i]
+	}
+
 	return matr
 }
 
