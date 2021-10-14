@@ -118,7 +118,35 @@ func RotatedSearch(numbers []int, val int) (int, bool) {
 //------------------------------------------------------------------------------
 // Problem 10.4
 
-func ExpSearch (numbers []int, val int) int {
+func get(numbers []int, ind int) int {
+	if ind >= len(numbers) {
+		return -1
+	}
+	return numbers[ind]
+}
+
+func ExpSearch(numbers []int, val int) int {
+	low := 0
+	high := 1
+	vhigh := get(numbers, high)
+
+	for vhigh != -1 && vhigh < val {
+		low = high
+		high = high << 1
+		vhigh = get(numbers, high)
+	}
+
+	for low <= high {
+		mid := (low + high) >> 1
+		vmid := get(numbers, mid)
+		if val < vmid || vmid == -1 {
+			high = mid - 1
+		} else if val > vmid {
+			low = mid + 1
+		} else {
+			return mid
+		}
+	}
 	return -1
 }
 

@@ -105,7 +105,6 @@ type testType104 struct {
 var tests104 = []testType104{
 	{[]int{1, 2, 3, 4, 5}, 3, 2},
 	{[]int{1, 2, 3, 4, 5}, 6, -1},
-
 }
 
 func Test104(t *testing.T) {
