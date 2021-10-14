@@ -149,3 +149,33 @@ func Test105(t *testing.T) {
 		}
 	}
 }
+
+//------------------------------------------------------------------------------
+// Problem 10.9
+
+type testType109 struct {
+	matr matrix
+	val  int
+	exp  [2]int
+}
+
+var matr109 = newMatrix([]int{1, 3, 5, 2, 4, 6, 7, 8, 9}, 3, 3)
+
+var tests109 = []testType109{
+	{matr109, 10, [2]int{-1, -1}},
+	{matr109, 1, [2]int{0, 0}},
+	{matr109, 5, [2]int{2, 0}},
+	{matr109, 7, [2]int{0, 2}},
+	{matr109, 9, [2]int{2, 2}},
+}
+
+func Test109(t *testing.T) {
+	for _, test := range tests109 {
+		output := MatrixSearch(test.matr, test.val)
+		if !reflect.DeepEqual(output, test.exp) {
+			t.Errorf("( %v , %v ) => %v | %v", test.matr, test.val, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
