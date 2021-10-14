@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -73,39 +72,51 @@ func GroupAnagrams_Map(strings []string) []string {
 //------------------------------------------------------------------------------
 // Problem 10.3
 
-func RotatedSearch(numbers []int, val int) (int, bool) {
-	low, vlow := 0, numbers[0]
-	high, vhigh := len(numbers)-1, numbers[len(numbers)-1]
+func rotSearch(numbers []int, val, low, high int) (int, bool) {
 
-	for low <= high {
-		mid := (low + high) >> 1
-		vmid := numbers[mid]
-
-		if vmid == val {
-			return mid, true
-		}
-
-		if vmid < vhigh {
-			if vmid < val && val <= vhigh {
-				low, vlow = mid+1, numbers[mid+1]
-			} else {
-				high, vhigh = mid-1, numbers[mid-1]
-			}
-		} else {
-			if vlow <= val && val < vmid {
-				high, vhigh = mid-1, numbers[mid-1]
-			} else {
-				low, vlow = mid+1, numbers[mid+1]
-			}
-		}
+	if low > high {
+		return 0, false
 	}
 
-	return 0, false
+	mid := (low + high) >> 1
+	if numbers[mid] == val {
+		return mid, true
+	}
+
+	vmid := numbers[mid]
+	if vmid > numbers[low] { // left side is increasing
+		if numbers[low] <= val && val < vmid {
+			return rotSearch(numbers, val, low, mid-1)
+		} else {
+			return rotSearch(numbers, val, mid+1, high)
+		}
+	} else if vmid < numbers[low] { // right side is increasing
+		if vmid < val && val <= numbers[high] {
+			return rotSearch(numbers, val, mid+1, high)
+		} else {
+			return rotSearch(numbers, val, low, mid-1)
+		}
+	} else {
+		if vmid != numbers[high] {
+			return rotSearch(numbers, val, mid+1, high)
+		} else {
+			if ind, found := rotSearch(numbers, val, low, mid-1); found {
+				return ind, true
+			}
+			if ind, found := rotSearch(numbers, val, mid+1, high); found {
+				return ind, true
+			}
+			return 0, false
+		}
+	}
+}
+
+func RotatedSearch(numbers []int, val int) (int, bool) {
+	return rotSearch(numbers, val, 0, len(numbers)-1)
 }
 
 //------------------------------------------------------------------------------
 
 func main() {
-	strings := []string{"a", "abc", "abcd", "ab", "a", "bac", "dabc", "ba"}
-	fmt.Println(GroupAnagrams_Map(strings))
+	// fmt.Println()
 }
