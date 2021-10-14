@@ -116,6 +116,13 @@ func RotatedSearch(numbers []int, val int) (int, bool) {
 }
 
 //------------------------------------------------------------------------------
+// Problem 10.4
+
+func ExpSearch (numbers []int, val int) int {
+	return -1
+}
+
+//------------------------------------------------------------------------------
 
 func main() {
 	// fmt.Println()

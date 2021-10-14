@@ -85,6 +85,32 @@ var tests103 = []testType103{
 func Test103(t *testing.T) {
 	for _, test := range tests103 {
 		output, _ := RotatedSearch(test.arr, test.val)
+		if output != test.exp {
+			t.Errorf("( %v , %v ) => %v | %v", test.arr, test.val, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+// Problem 10.4
+
+type testType104 struct {
+	arr []int
+	val int
+	exp int
+}
+
+var tests104 = []testType104{
+	{[]int{1, 2, 3, 4, 5}, 3, 2},
+	{[]int{1, 2, 3, 4, 5}, 6, -1},
+
+}
+
+func Test104(t *testing.T) {
+	for _, test := range tests104 {
+		output := ExpSearch(test.arr, test.val)
 		if !reflect.DeepEqual(output, test.exp) {
 			t.Errorf("( %v , %v ) => %v | %v", test.arr, test.val, output, test.exp)
 		} else {
