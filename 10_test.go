@@ -151,6 +151,43 @@ func Test105(t *testing.T) {
 }
 
 //------------------------------------------------------------------------------
+// Problem 10.7
+
+type testType107 struct {
+	arr []uint8
+	exp uint8
+}
+
+func arr107(n uint8) []uint8 {
+	arr := make([]uint8, (1 << 8) - 1)
+	for i := range arr {
+		if uint8(i) <= n {
+			arr[i] = uint8(i)
+		} else {
+			arr[i] = uint8(i) + 1
+		}
+	}
+	return arr
+}
+
+var tests107 = []testType107{
+	{arr107(0), 0},
+	{arr107(100), 100},
+	{arr107(255), 255},
+}
+
+func Test107(t *testing.T) {
+	for _, test := range tests107 {
+		output := MissingInt(test.arr)
+		if output != test.exp {
+			t.Errorf("( ... ) => %v | %v", output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
 // Problem 10.9
 
 type testType109 struct {

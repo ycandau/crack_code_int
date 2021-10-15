@@ -179,6 +179,13 @@ func SparseSearch(arr []string, val string) int {
 }
 
 //------------------------------------------------------------------------------
+// Problem 10.7
+
+func MissingInt([]uint8) uint8 {
+	return 0
+}
+
+//------------------------------------------------------------------------------
 // Problem 10.9
 
 func MatrixSearch(matr matrix, val int) [2]int {
