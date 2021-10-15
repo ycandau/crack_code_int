@@ -202,7 +202,16 @@ func MatrixSearch(matr matrix, val int) [2]int {
 // Problem 10.11
 
 func PeaksAndValleys(numbers []int) []int {
-	return numbers
+	pv := make([]int, len(numbers))
+	copy(pv, numbers)
+	
+	for i := 2; i < len(pv); i++ {
+		if (pv[i-2] < pv[i-1] && pv[i-1] < pv[i]) || 
+			(pv[i-2] > pv[i-1] && pv[i-1] > pv[i]) {
+			pv[i-1], pv[i] = pv[i], pv[i-1]
+		}
+	}
+	return pv
 }
 
 //------------------------------------------------------------------------------

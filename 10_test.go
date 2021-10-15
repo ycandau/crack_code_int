@@ -188,6 +188,10 @@ type testType111 struct {
 }
 
 var tests111 = []testType111{
+	{[]int{}},
+	{[]int{1}},
+	{[]int{1, 2}},
+	{[]int{1, 2, 3, 4, 5}},
 	{[]int{1, 2, 3, 4, 5, 6}},
 }
 
