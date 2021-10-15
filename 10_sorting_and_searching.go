@@ -199,11 +199,19 @@ func MatrixSearch(matr matrix, val int) [2]int {
 }
 
 //------------------------------------------------------------------------------
+// Problem 10.10
+
+func RankFromStream(arr []int, val int) int {
+	return 0
+
+}
+
+//------------------------------------------------------------------------------
 // Problem 10.11
 
-func PeaksAndValleys(numbers []int) []int {
-	pv := make([]int, len(numbers))
-	copy(pv, numbers)
+func PeaksAndValleys(arr []int) []int {
+	pv := make([]int, len(arr))
+	copy(pv, arr)
 	
 	for i := 2; i < len(pv); i++ {
 		if (pv[i-2] < pv[i-1] && pv[i-1] < pv[i]) || 
