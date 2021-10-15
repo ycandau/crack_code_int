@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -249,12 +248,26 @@ func binTree(arr []int) *node {
 	return root
 }
 
+func getRank(root *node, val int) int {
+	curr := root
+	rank := 0
+
+	for curr != nil {
+		if val == curr.val {
+			return rank + curr.rank
+		} else if val < curr.val {
+			curr = curr.low
+		} else {
+			rank += curr.rank + 1
+			curr = curr.high
+		}
+	}
+	return rank
+}
+
 func RankFromStream(arr []int, val int) int {
-
 	tree := binTree(arr)
-	fmt.Println(tree)
-	return 0
-
+	return getRank(tree, val)
 }
 
 //------------------------------------------------------------------------------

@@ -192,10 +192,18 @@ type testType110 struct {
 var stream110 = []int{5, 1, 4, 4, 5, 9, 7, 13, 3}
 
 var tests110 = []testType110{
-	// {stream110, 1, 0},
-	// {stream110, 3, 1},
-	// {stream110, 4, 3},
-	{stream110, 15, 0},
+	{stream110, 0, 0},
+	{stream110, 1, 0},
+	{stream110, 2, 1},
+	{stream110, 3, 1},
+	{stream110, 4, 3},
+	{stream110, 5, 5},
+	{stream110, 6, 6},
+	{stream110, 7, 6},
+	{stream110, 8, 7},
+	{stream110, 9, 7},
+	{stream110, 10, 8},
+	{stream110, 15, 9},
 }
 
 func Test110(t *testing.T) {
