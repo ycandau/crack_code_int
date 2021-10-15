@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sort"
 )
 
@@ -201,7 +202,57 @@ func MatrixSearch(matr matrix, val int) [2]int {
 //------------------------------------------------------------------------------
 // Problem 10.10
 
+type node struct {
+	val  int
+	low  *node
+	high *node
+	rank int
+}
+
+func newNode(n int) *node {
+	nd := node{n, nil, nil, 0}
+	return &nd
+}
+
+func binTree(arr []int) *node {
+	if len(arr) == 0 {
+		return newNode(0)
+	}
+
+	// Add node to binary tree and increase ranks
+	root := newNode(arr[0])
+	for _, n := range arr[1:] {
+		curr := root
+
+		for {
+			if n == curr.val { // value matches
+				curr.rank++
+				break
+
+			} else if n < curr.val { // value lower
+				curr.rank++
+				if curr.low == nil {
+					curr.low = newNode(n)
+					break
+				}
+				curr = curr.low
+
+			} else { // value higher
+				if curr.high == nil {
+					curr.high = newNode(n)
+					break
+				}
+				curr = curr.high
+			}
+		}
+	}
+	return root
+}
+
 func RankFromStream(arr []int, val int) int {
+
+	tree := binTree(arr)
+	fmt.Println(tree)
 	return 0
 
 }
@@ -212,9 +263,9 @@ func RankFromStream(arr []int, val int) int {
 func PeaksAndValleys(arr []int) []int {
 	pv := make([]int, len(arr))
 	copy(pv, arr)
-	
+
 	for i := 2; i < len(pv); i++ {
-		if (pv[i-2] < pv[i-1] && pv[i-1] < pv[i]) || 
+		if (pv[i-2] < pv[i-1] && pv[i-1] < pv[i]) ||
 			(pv[i-2] > pv[i-1] && pv[i-1] > pv[i]) {
 			pv[i-1], pv[i] = pv[i], pv[i-1]
 		}
