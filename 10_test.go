@@ -179,3 +179,28 @@ func Test109(t *testing.T) {
 		}
 	}
 }
+
+//------------------------------------------------------------------------------
+// Problem 10.11
+
+type testType111 struct {
+	arr []int
+}
+
+var tests111 = []testType111{
+	{[]int{1, 2, 3, 4, 5, 6}},
+}
+
+func Test111(t *testing.T) {
+	for _, test := range tests111 {
+		output := PeaksAndValleys(test.arr)
+		for i := 2; i < len(output); i++{
+			if (output[i-2] < output[i-1] && output[i-1] < output[i]) ||
+				(output[i-2] > output[i-1] && output[i-1] > output[i]) {
+					t.Errorf("( %v ) => %v | %v", test.arr, output, output[i-2:i+1])
+					return
+			}
+		}
+		t.Log("Pass")
+	}
+}

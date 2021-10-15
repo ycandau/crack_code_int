@@ -198,6 +198,15 @@ func MatrixSearch(matr matrix, val int) [2]int {
 	return [2]int{-1, -1}
 }
 
+//------------------------------------------------------------------------------
+// Problem 10.11
+
+func PeaksAndValleys(numbers []int) []int {
+	return numbers
+}
+
+//------------------------------------------------------------------------------
+
 func main() {
 	// fmt.Println()
 }
