@@ -181,7 +181,29 @@ func SparseSearch(arr []string, val string) int {
 //------------------------------------------------------------------------------
 // Problem 10.7
 
-func MissingInt([]uint8) uint8 {
+var log2 = map[uint8]uint8{
+	1: 0, 3: 1, 7: 2, 15: 3, 31: 4, 63: 5, 127: 6, 255: 7,
+}
+
+func MissingInt(arr []uint8) uint8 {
+	var bv [1 << 5]byte
+
+	for _, n := range arr {
+		index := n >> 3
+		var mask uint8
+		mask = 1 << (n % 8)
+		bv[index] = bv[index] | mask
+	}
+
+	for i, b := range bv {
+		if b != (1<<8)-1 {
+			b = ^b
+			b |= b >> 1
+			b |= b >> 2
+			b |= b >> 4
+			return uint8(i<<3) + log2[b]
+		}
+	}
 	return 0
 }
 

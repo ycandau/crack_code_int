@@ -159,9 +159,9 @@ type testType107 struct {
 }
 
 func arr107(n uint8) []uint8 {
-	arr := make([]uint8, (1 << 8) - 1)
+	arr := make([]uint8, (1 << 8))
 	for i := range arr {
-		if uint8(i) <= n {
+		if uint8(i) < n {
 			arr[i] = uint8(i)
 		} else {
 			arr[i] = uint8(i) + 1
@@ -172,7 +172,14 @@ func arr107(n uint8) []uint8 {
 
 var tests107 = []testType107{
 	{arr107(0), 0},
-	{arr107(100), 100},
+	{arr107(64), 64},
+	{arr107(65), 65},
+	{arr107(66), 66},
+	{arr107(67), 67},
+	{arr107(68), 68},
+	{arr107(69), 69},
+	{arr107(70), 70},
+	{arr107(71), 71},
 	{arr107(255), 255},
 }
 
