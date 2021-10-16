@@ -10,3 +10,10 @@ func Insertion(dest, src, begin, end int) int {
 
 	return (dest &^ mask) | (src << begin)
 }
+
+//------------------------------------------------------------------------------
+// Problem 5.4
+
+func NextNumber(n int) (prev, next int) {
+	return n, n
+}

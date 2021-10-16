@@ -5,7 +5,7 @@ import (
 )
 
 //------------------------------------------------------------------------------
-// Problem 1.1
+// Problem 5.1
 
 type testType51 struct {
 	dest int
@@ -32,6 +32,32 @@ func Test51(t *testing.T) {
 		if output != test.exp {
 			t.Errorf("( %v %v %v %v ) => %v | %v",
 				test.dest, test.src, test.begin, test.end, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+// Problem 5.4
+
+type testType54 struct {
+	n int
+	prev int
+	next int
+}
+
+var tests54 = []testType54{
+	{2, 1, 4},
+	{10, 9, 12},
+}
+
+func Test54(t *testing.T) {
+	for _, test := range tests54 {
+		prev, next := NextNumber(test.n)
+		if prev != test.prev || next != test.next {
+			t.Errorf("( %v ) => ( %v %v ) | ( %v %v )",
+				test.n, prev, next, test.prev, test.next)
 		} else {
 			t.Log("Pass")
 		}
