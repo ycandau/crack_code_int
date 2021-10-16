@@ -26,12 +26,12 @@ func NextNumber(n int) (prev, next int) {
 	i := 0
 	for bit(n, i) == 0 { i++ }
 	for bit(n, i) == 1 { i++ }
-	next = n + (1 << i) - (1 << (i-1))
+	next = n ^ (3 << (i-1))
 
 	i = 0
 	for bit(n, i) == 1 { i++ }
 	for bit(n, i) == 0 { i++ }
-	prev = n - (1 << i) + (1 << (i-1))
+	prev = n ^ (3 << (i-1))
 
 	return
 }
