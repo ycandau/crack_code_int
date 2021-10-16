@@ -181,8 +181,15 @@ func SparseSearch(arr []string, val string) int {
 //------------------------------------------------------------------------------
 // Problem 10.7
 
-var log2 = map[uint8]uint8{
-	1: 0, 3: 1, 7: 2, 15: 3, 31: 4, 63: 5, 127: 6, 255: 7,
+var log2map = map[uint8]uint8{
+	0: 0, 1: 0, 3: 1, 7: 2, 15: 3, 31: 4, 63: 5, 127: 6, 255: 7,
+}
+
+func log2(b byte) uint8 {
+	b |= b >> 1
+	b |= b >> 2
+	b |= b >> 4
+	return log2map[b]
 }
 
 func MissingInt(arr []uint8) uint8 {
@@ -191,21 +198,35 @@ func MissingInt(arr []uint8) uint8 {
 	for _, n := range arr {
 		index := n >> 3
 		var mask uint8
-		mask = 1 << (n % 8)
+		mask = 1 << (n & 7) // same as n % 8
 		bv[index] = bv[index] | mask
 	}
 
 	for i, b := range bv {
 		if b != (1<<8)-1 {
-			b = ^b
-			b |= b >> 1
-			b |= b >> 2
-			b |= b >> 4
-			return uint8(i<<3) + log2[b]
+			return uint8(i<<3) + log2(^b)
 		}
 	}
 	return 0
 }
+
+// func binIndex(arr []uint8) uint8 {
+// 	bv := make([]byte, 2)
+
+// 	for _, n := range arr {
+// 		n = n >> 4
+// 		index := n / 8
+// 		mask := uint8(1 << (n % 8))
+// 		bv[index] |= mask
+// 	}
+
+// 	for i, b := range bv {
+// 		if b != 255
+// 	}
+
+// 	return 0
+// }
+
 
 //------------------------------------------------------------------------------
 // Problem 10.9
