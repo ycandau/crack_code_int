@@ -14,6 +14,24 @@ func Insertion(dest, src, begin, end int) int {
 //------------------------------------------------------------------------------
 // Problem 5.4
 
+func bit(n, i int) int {
+	return (n >> i) & 1
+}
+
 func NextNumber(n int) (prev, next int) {
-	return n, n
+	if n == 0 {
+		return 0, 0
+	}
+
+	i := 0
+	for bit(n, i) == 0 { i++ }
+	for bit(n, i) == 1 { i++ }
+	next = n + (1 << i) - (1 << (i-1))
+
+	i = 0
+	for bit(n, i) == 1 { i++ }
+	for bit(n, i) == 0 { i++ }
+	prev = n - (1 << i) + (1 << (i-1))
+
+	return
 }
