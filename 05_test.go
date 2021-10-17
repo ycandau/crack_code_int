@@ -75,15 +75,15 @@ type testType56 struct {
 
 var tests56 = []testType56{
 	{0b_0, 0b_0, 0},
-	{0b_1, 0b_1, 1},
-	{0b_1111_1111, 0b_1011_0010, 3},
+	{0b_1, 0b_0, 1},
+	{0b_1111_1111, 0b_1011_0010, 4},
 }
 
 func Test56(t *testing.T) {
 	for _, test := range tests56 {
 		output := Conversion(test.n1, test.n2)
 		if output != test.exp {
-			t.Errorf("( %v %v ) => %v | %v", test.n1, test.n2, output, test.exp)
+			t.Errorf("( %b %b ) => %v | %v", test.n1, test.n2, output, test.exp)
 		} else {
 			t.Log("Pass")
 		}
