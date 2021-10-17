@@ -35,3 +35,10 @@ func NextNumber(n int) (prev, next int) {
 
 	return
 }
+
+//------------------------------------------------------------------------------
+// Problem 5.6
+
+func Conversion(n1, n2 int) int {
+	return 0
+}
