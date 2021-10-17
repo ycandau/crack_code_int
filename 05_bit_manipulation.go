@@ -76,5 +76,12 @@ func Conversion_Table(n1, n2 int) int {
 // Problem 5.7
 
 func PairwiseSwap_Naive(n int) int {
-	return n
+	output := 0
+	for i := 0; i < 16; {
+		output += (n & (1 << i)) << 1
+		i++
+		output += (n & (1 << i)) >> 1
+		i++
+	}
+	return output
 }
