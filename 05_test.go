@@ -111,3 +111,29 @@ func Test56c(t *testing.T) {
 		}
 	}
 }
+
+//------------------------------------------------------------------------------
+// Problem 5.7
+
+type testType57 struct {
+	n int
+	exp int
+}
+
+var tests57 = []testType57{
+	{0b_0, 0b_0},
+	{0b_1, 0b_10},
+	{0b_1111_1111, 0b_1111_1111},
+	{0b_1001_1010, 0b_0110_0101},
+}
+
+func Test57a(t *testing.T) {
+	for _, test := range tests57 {
+		output := PairwiseSwap_Naive(test.n)
+		if output != test.exp {
+			t.Errorf("( %b ) => %b | %b", test.n, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}

@@ -71,3 +71,10 @@ func Conversion_Table(n1, n2 int) int {
 	  counts[(diff >> 24) & 0b_1111] +
 	  counts[(diff >> 28) & 0b_1111]
 }
+
+//------------------------------------------------------------------------------
+// Problem 5.7
+
+func PairwiseSwap_Naive(n int) int {
+	return n
+}
