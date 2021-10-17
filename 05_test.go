@@ -79,9 +79,20 @@ var tests56 = []testType56{
 	{0b_1111_1111, 0b_1011_0010, 4},
 }
 
-func Test56(t *testing.T) {
+func Test56a(t *testing.T) {
 	for _, test := range tests56 {
-		output := Conversion(test.n1, test.n2)
+		output := Conversion_Naive(test.n1, test.n2)
+		if output != test.exp {
+			t.Errorf("( %b %b ) => %v | %v", test.n1, test.n2, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+func Test56b(t *testing.T) {
+	for _, test := range tests56 {
+		output := Conversion_Kernighan(test.n1, test.n2)
 		if output != test.exp {
 			t.Errorf("( %b %b ) => %v | %v", test.n1, test.n2, output, test.exp)
 		} else {

@@ -39,14 +39,18 @@ func NextNumber(n int) (prev, next int) {
 //------------------------------------------------------------------------------
 // Problem 5.6
 
-func Conversion(n1, n2 int) int {
-	diff := n1 ^ n2
+func Conversion_Naive(n1, n2 int) int {
 	count := 0
-
-	for diff != 0 {
+	for diff := n1 ^ n2; diff != 0; diff >>= 1 {
 		count += diff & 1
-		diff >>= 1
 	}
+	return count
+}
 
+func Conversion_Kernighan(n1, n2 int) int {
+	count := 0
+	for diff := n1 ^ n2; diff != 0; count++ {
+		diff &= diff - 1 // clear least significant bit
+	}
 	return count
 }
