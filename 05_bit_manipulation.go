@@ -5,8 +5,8 @@ package main
 
 func Insertion(dest, src, begin, end int) int {
 	mask := 1 << (end - begin + 1) // 0000 1000
-	mask -= 1 // 0000 0111
-	mask <<= begin // 0001 1100
+	mask -= 1                      // 0000 0111
+	mask <<= begin                 // 0001 1100
 
 	return (dest &^ mask) | (src << begin)
 }
@@ -24,14 +24,22 @@ func NextNumber(n int) (prev, next int) {
 	}
 
 	i := 0
-	for bit(n, i) == 0 { i++ }
-	for bit(n, i) == 1 { i++ }
-	next = n ^ (3 << (i-1))
+	for bit(n, i) == 0 {
+		i++
+	}
+	for bit(n, i) == 1 {
+		i++
+	}
+	next = n ^ (3 << (i - 1))
 
 	i = 0
-	for bit(n, i) == 1 { i++ }
-	for bit(n, i) == 0 { i++ }
-	prev = n ^ (3 << (i-1))
+	for bit(n, i) == 1 {
+		i++
+	}
+	for bit(n, i) == 0 {
+		i++
+	}
+	prev = n ^ (3 << (i - 1))
 
 	return
 }
@@ -62,14 +70,14 @@ var counts = map[int]int{
 
 func Conversion_Table(n1, n2 int) int {
 	diff := n1 ^ n2
-	return counts[(diff >> 0) & 0b_1111] +
-	  counts[(diff >> 4) & 0b_1111] +
-	  counts[(diff >> 8) & 0b_1111] +
-	  counts[(diff >> 12) & 0b_1111] +
-	  counts[(diff >> 16) & 0b_1111] +
-	  counts[(diff >> 20) & 0b_1111] +
-	  counts[(diff >> 24) & 0b_1111] +
-	  counts[(diff >> 28) & 0b_1111]
+	return counts[(diff>>0)&0b_1111] +
+		counts[(diff>>4)&0b_1111] +
+		counts[(diff>>8)&0b_1111] +
+		counts[(diff>>12)&0b_1111] +
+		counts[(diff>>16)&0b_1111] +
+		counts[(diff>>20)&0b_1111] +
+		counts[(diff>>24)&0b_1111] +
+		counts[(diff>>28)&0b_1111]
 }
 
 //------------------------------------------------------------------------------
@@ -90,4 +98,12 @@ var mask57 = 0b_0101_0101_0101_0101_0101_0101_0101_0101
 
 func PairwiseSwap_Mask(n int) int {
 	return ((n & mask57) << 1) | ((n & (mask57 << 1)) >> 1)
+}
+
+//------------------------------------------------------------------------------
+// Problem 5.8
+
+func DrawLine(screen []byte, width, x1, x2, y int) []byte {
+
+	return screen
 }

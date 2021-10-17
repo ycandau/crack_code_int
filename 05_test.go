@@ -1,6 +1,7 @@
 package main
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -8,11 +9,11 @@ import (
 // Problem 5.1
 
 type testType51 struct {
-	dest int
-	src int
+	dest  int
+	src   int
 	begin int
-	end int
-	exp int
+	end   int
+	exp   int
 }
 
 var tests51 = []testType51{
@@ -23,7 +24,6 @@ var tests51 = []testType51{
 	{0, 7, 2, 7, 28},
 	{255, 4, 0, 3, 255 - 11},
 	{255, 4, 2, 5, 255 - 44},
-
 }
 
 func Test51(t *testing.T) {
@@ -42,7 +42,7 @@ func Test51(t *testing.T) {
 // Problem 5.4
 
 type testType54 struct {
-	n int
+	n    int
 	prev int
 	next int
 }
@@ -68,8 +68,8 @@ func Test54(t *testing.T) {
 // Problem 5.6
 
 type testType56 struct {
-	n1 int
-	n2 int
+	n1  int
+	n2  int
 	exp int
 }
 
@@ -116,7 +116,7 @@ func Test56c(t *testing.T) {
 // Problem 5.7
 
 type testType57 struct {
-	n int
+	n   int
 	exp int
 }
 
@@ -143,6 +143,44 @@ func Test57b(t *testing.T) {
 		output := PairwiseSwap_Mask(test.n)
 		if output != test.exp {
 			t.Errorf("( %b ) => %b | %b", test.n, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+// Problem 5.8
+
+type testType58 struct {
+	screen []byte
+	width  int
+	x1     int
+	x2     int
+	y      int
+	exp    []byte
+}
+
+func blank(dx, dy int) []byte {
+	return make([]byte, (dx*dy)>>3)
+}
+
+var screen1 = []byte{0, 255, 0, 0, 0, 0, 0, 0, 0}
+var screen2 = []byte{0, 0, 0, 240, 0, 0, 0, 0, 0}
+var screen3 = []byte{0, 0, 0, 0, 0, 0, 0, 0, 15}
+
+var tests58 = []testType58{
+	{blank(24, 3), 24, 8, 15, 0, screen1},
+	{blank(24, 3), 24, 0, 3, 1, screen2},
+	{blank(24, 3), 24, 20, 23, 2, screen3},
+}
+
+func Test58(t *testing.T) {
+	for _, test := range tests58 {
+		output := DrawLine(test.screen, test.width, test.x1, test.x2, test.y)
+		if !reflect.DeepEqual(output, test.exp) {
+			t.Errorf("( %v %v %v ) => %v | %v",
+				test.x1, test.x2, test.y, output, test.exp)
 		} else {
 			t.Log("Pass")
 		}
