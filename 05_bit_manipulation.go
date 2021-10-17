@@ -104,6 +104,29 @@ func PairwiseSwap_Mask(n int) int {
 // Problem 5.8
 
 func DrawLine(screen []byte, width, x1, x2, y int) []byte {
+	if x1 > x2 {
+		x1, x2 = x2, x1
+	}
+
+	i1 := (x1 + width*y) >> 3
+	i2 := (x2 + width*y) >> 3
+
+	for i := i1 + 1; i < i2; i++ {
+		screen[i] = 255
+	}
+
+	l1 := 8 - x1&7
+	m1 := (1 << l1) - 1
+
+	l2 := x2&7 + 1
+	m2 := ((1 << l2) - 1) << (8 - l2)
+
+	if i1 != i2 {
+		screen[i1] = byte(m1)
+		screen[i2] = byte(m2)
+	} else {
+		screen[i1] = byte(m1 & m2) // beginning and ending in same byte
+	}
 
 	return screen
 }
