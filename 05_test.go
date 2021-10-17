@@ -137,3 +137,14 @@ func Test57a(t *testing.T) {
 		}
 	}
 }
+
+func Test57b(t *testing.T) {
+	for _, test := range tests57 {
+		output := PairwiseSwap_Mask(test.n)
+		if output != test.exp {
+			t.Errorf("( %b ) => %b | %b", test.n, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
