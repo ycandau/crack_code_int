@@ -100,3 +100,14 @@ func Test56b(t *testing.T) {
 		}
 	}
 }
+
+func Test56c(t *testing.T) {
+	for _, test := range tests56 {
+		output := Conversion_Table(test.n1, test.n2)
+		if output != test.exp {
+			t.Errorf("( %b %b ) => %v | %v", test.n1, test.n2, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}

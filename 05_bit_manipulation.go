@@ -54,3 +54,20 @@ func Conversion_Kernighan(n1, n2 int) int {
 	}
 	return count
 }
+
+var counts = map[int]int{
+	0: 0, 1: 1, 2: 1, 3: 2, 4: 1, 5: 2, 6: 2, 7: 3,
+	8: 1, 9: 2, 10: 2, 11: 3, 12: 2, 13: 3, 14: 3, 15: 4,
+}
+
+func Conversion_Table(n1, n2 int) int {
+	diff := n1 ^ n2
+	return counts[(diff >> 0) & 0b_1111] +
+	  counts[(diff >> 4) & 0b_1111] +
+	  counts[(diff >> 8) & 0b_1111] +
+	  counts[(diff >> 12) & 0b_1111] +
+	  counts[(diff >> 16) & 0b_1111] +
+	  counts[(diff >> 20) & 0b_1111] +
+	  counts[(diff >> 24) & 0b_1111] +
+	  counts[(diff >> 28) & 0b_1111]
+}
