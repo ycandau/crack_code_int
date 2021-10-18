@@ -1,16 +1,22 @@
 package main
 
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
 //------------------------------------------------------------------------------
-// Problem 2.1
+// Initial
 
 type listNode struct {
-	val int
+	val  int
 	next *listNode
 }
 
 type list struct {
 	first *listNode
-	last *listNode
+	last  *listNode
 }
 
 func (node *listNode) getNext() *listNode {
@@ -18,9 +24,9 @@ func (node *listNode) getNext() *listNode {
 }
 
 func (lst *list) append(val int) *list {
-	node := listNode{ val, nil }
+	node := listNode{val, nil}
 
-	if (lst.first == nil) {
+	if lst.first == nil {
 		lst.first = &node
 	} else {
 		lst.last.next = &node
@@ -36,4 +42,22 @@ func toList(values []int) *list {
 		lst.append(n)
 	}
 	return lst
+}
+
+func printList(lst *list) {
+	var sb strings.Builder
+	for node := lst.first; node != nil; node = node.next {
+		sb.WriteString(strconv.Itoa(node.val))
+		sb.WriteString(", ")
+	}
+	fmt.Println(sb.String())
+}
+
+//------------------------------------------------------------------------------
+// Problem 2.1
+
+func main() {
+	arr := []int{1, 2, 3, 4}
+	list := toList(arr)
+	printList(list)
 }
