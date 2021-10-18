@@ -42,8 +42,8 @@ func Test51(t *testing.T) {
 // Problem 5.3
 
 type testType53 struct {
-	n  int
-	exp   int
+	n   uint
+	exp int
 }
 
 var tests53 = []testType53{
@@ -54,6 +54,7 @@ var tests53 = []testType53{
 	{0b_0000_0101_0000, 3},
 	{0b_0101_0101_0101, 3},
 	{0b_1110_1100_0101, 6},
+	{^uint(0), 64},
 }
 
 func Test53(t *testing.T) {

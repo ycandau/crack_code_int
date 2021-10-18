@@ -1,5 +1,7 @@
 package main
 
+import "unsafe"
+
 //------------------------------------------------------------------------------
 // Problem 5.1
 
@@ -14,8 +16,37 @@ func Insertion(dest, src, begin, end int) int {
 //------------------------------------------------------------------------------
 // Problem 5.3
 
-func FlipBit(n int) int {
-	return 0
+func max(numbers ...int) int {
+	maxi := numbers[0]
+	for _, n := range numbers[1:] {
+		if n > maxi {
+			maxi = n
+		}
+	}
+	return maxi
+}
+
+func FlipBit(num uint) int {
+	if ^num == 0 {
+		return int(unsafe.Sizeof(num)) << 3
+	}
+
+	length := 0
+	prevLength := 0
+	maxi := 1
+
+	for n := num; n != 0; n >>= 1 {
+		if (n & 1) == 1 {
+			length++
+		} else {
+			prevLength = length
+			length = 0
+		}
+
+		maxi = max(maxi, length+prevLength+1)
+	}
+
+	return maxi
 }
 
 //------------------------------------------------------------------------------
