@@ -39,6 +39,35 @@ func Test51(t *testing.T) {
 }
 
 //------------------------------------------------------------------------------
+// Problem 5.3
+
+type testType53 struct {
+	n  int
+	exp   int
+}
+
+var tests53 = []testType53{
+	{0b_0000_0000_0000, 1},
+	{0b_0000_0000_0001, 2},
+	{0b_0000_0001_0000, 2},
+	{0b_0000_0011_0000, 3},
+	{0b_0000_0101_0000, 3},
+	{0b_0101_0101_0101, 3},
+	{0b_1110_1100_0101, 6},
+}
+
+func Test53(t *testing.T) {
+	for _, test := range tests53 {
+		output := FlipBit(test.n)
+		if output != test.exp {
+			t.Errorf("( %b ) => %v | %v", test.n, output, test.exp)
+		} else {
+			t.Log("Pass")
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
 // Problem 5.4
 
 type testType54 struct {
